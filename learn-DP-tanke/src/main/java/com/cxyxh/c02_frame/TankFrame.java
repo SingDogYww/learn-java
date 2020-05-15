@@ -18,7 +18,9 @@ public class TankFrame extends Frame {
     List<Bullet> bullet = new ArrayList<>();
     public static final int GAME_HIGHT = 800, GAME_WIDTH = 1200;
     List<Tank> tanks = new ArrayList<>();
-    Explodes explodes = new Explodes(200, 200, this);
+//    Explodes explodes = new Explodes(200, 200, this);
+    List<Explodes> explodesList = new ArrayList<>();
+
     public TankFrame() {
         //设置宽度
         setSize(GAME_WIDTH, GAME_HIGHT);
@@ -88,10 +90,13 @@ public class TankFrame extends Frame {
             Bullet bullet = this.bullet.get(i);
             bullet.paint(g);
         }
+        for (int i = 0; i < explodesList.size(); i++) {
+            Explodes explodes = explodesList.get(i);
+            explodes.paint(g);
+        }
         for (int i = 0; i < tanks.size(); i++) {
             tanks.get(i).paint(g);
         }
-
         //碰撞检测
         for (int i = 0; i < bullet.size(); i++) {
             for (int j = 0; j < tanks.size(); j++) {
@@ -100,8 +105,7 @@ public class TankFrame extends Frame {
             //判断己方坦克碰撞检测
             bullet.get(i).collideWith(tank);
         }
-        explodes.paint(g);
-
+//        explodes.paint(g);
     }
 
     /**

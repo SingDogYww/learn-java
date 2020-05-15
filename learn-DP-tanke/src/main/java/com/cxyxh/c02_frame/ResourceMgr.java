@@ -11,15 +11,15 @@ public class ResourceMgr {
 
     static {
         try {
-            tankL = ImageIO.read(ResourceMgr.class.getResource("/img/tank/tankL.gif"));
-            tankR = ImageIO.read(ResourceMgr.class.getResource("/img/tank/tankR.gif"));
-            tankD = ImageIO.read(ResourceMgr.class.getResource("/img/tank/tankD.gif"));
-            tankU = ImageIO.read(ResourceMgr.class.getResource("/img/tank/tankU.gif"));
+            tankU = ImageIO.read(ResourceMgr.class.getResource("/img/tank/GoodTank1.png"));
+            tankL = ImageUtil.rotateImage(tankU, -90);
+            tankR = ImageUtil.rotateImage(tankU, 90);
+            tankD = ImageUtil.rotateImage(tankU, 180);
 
-            bulletL = ImageIO.read(ResourceMgr.class.getResource("/img/bullet/bulletL.gif"));
-            bulletR = ImageIO.read(ResourceMgr.class.getResource("/img/bullet/bulletR.gif"));
-            bulletD = ImageIO.read(ResourceMgr.class.getResource("/img/bullet/bulletD.gif"));
-            bulletU = ImageIO.read(ResourceMgr.class.getResource("/img/bullet/bulletU.gif"));
+            bulletU = ImageIO.read(ResourceMgr.class.getResource("/img/bullet/GoodBulletU.png"));
+            bulletL = ImageUtil.rotateImage(bulletU, -90);
+            bulletR = ImageUtil.rotateImage(bulletU, 90);
+            bulletD = ImageUtil.rotateImage(bulletU, 180);
 
             for (int i = 0; i < 16; i++) {
                 explodes[i] = ImageIO.read(ResourceMgr.class.getResource("/img/boom/e"+ (i + 1) + ".gif"));

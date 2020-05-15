@@ -8,7 +8,7 @@ import java.util.Random;
 public class Tank {
     private int x, y;
     private Dir dir;
-    private static final int speed = 1;
+    private static final int speed = 5;
     private boolean moving = false;
     private boolean alive = true;
     private TankFrame tf;
