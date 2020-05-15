@@ -27,7 +27,6 @@ public class Tank {
     }
 
 
-
     public Group getGroup() {
         return group;
     }
@@ -87,7 +86,7 @@ public class Tank {
         move();
     }
 
-    public void move(){
+    public void move() {
         if (!moving) return;
         switch (dir) {
             case LEFT:
@@ -103,9 +102,16 @@ public class Tank {
                 y -= speed;
                 break;
         }
-        if (tf.tanks.contains(this) && random.nextInt() > 5){
+        if (this.group == Group.BAD && random.nextInt() > 5) {
             this.fire();
         }
+        if (this.group == Group.BAD && random.nextInt(100) > 95) {
+            randomDir();
+        }
+    }
+
+    private void randomDir() {
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
 
