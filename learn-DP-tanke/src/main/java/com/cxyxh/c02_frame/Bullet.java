@@ -12,6 +12,7 @@ public class Bullet {
     public static int WIDTH = ResourceMgr.bulletL.getWidth();
     public static int HIGHT = ResourceMgr.bulletL.getHeight();
     private Group group;
+    private Rectangle rectangle = new Rectangle();
 
     public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
@@ -19,6 +20,10 @@ public class Bullet {
         this.dir = dir;
         this.tf = tf;
         this.group = group;
+        rectangle.x = x;
+        rectangle.y = y;
+        rectangle.width = WIDTH;
+        rectangle.height = HIGHT;
     }
 
     public int getX() {
@@ -55,6 +60,8 @@ public class Bullet {
                 g.drawImage(ResourceMgr.bulletU, x, y, null);
                 break;
         }
+        rectangle.x = this.x;
+        rectangle.y = this.y;
         move();
     }
 
@@ -80,9 +87,7 @@ public class Bullet {
     public void collideWith(Tank tank) {
         if (this.group.equals(tank.getGroup())) return;
         //TODO 每次都会new对象，会让垃圾回收器时不时的回收一下
-        Rectangle bulletRect = new Rectangle(this.x, this.y, WIDTH, HIGHT);
-        Rectangle tankRect = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HIGHT);
-        if (bulletRect.intersects(tankRect)){
+        if (rectangle.intersects(tank.rectangle)){
             tank.die();
             this.die();
             int bX = tank.getX() + Tank.WIDTH / 2 - Explodes.WIDTH / 2;

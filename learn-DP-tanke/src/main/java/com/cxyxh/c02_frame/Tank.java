@@ -15,15 +15,18 @@ public class Tank {
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HIGHT = ResourceMgr.goodTankU.getHeight();
     private Random random = new Random();
-
     private Group group = Group.BAD;
-
+    Rectangle rectangle = new Rectangle();
     public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
         this.x = x;
         this.y = y;
         this.group = group;
         this.dir = dir;
         this.tf = tf;
+        rectangle.x = this.x;
+        rectangle.y = y;
+        rectangle.width = WIDTH;
+        rectangle.height = HIGHT;
     }
 
 
@@ -109,6 +112,8 @@ public class Tank {
             randomDir();
         }
         boundsCheck();
+        rectangle.x = this.x;
+        rectangle.y = this.y;
     }
 
     private void boundsCheck() {
