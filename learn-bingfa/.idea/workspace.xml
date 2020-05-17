@@ -13,14 +13,8 @@
       <change afterPath="$PROJECT_DIR$/../learn-DP-tanke/src/main/java/com/cxyxh/c04_DesignPattern/singleton/Mgr06.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../learn-DP-tanke/src/main/java/com/cxyxh/c04_DesignPattern/singleton/Mgr07.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../learn-DP-tanke/src/main/java/com/cxyxh/c04_DesignPattern/singleton/Mgr08.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/AlternatePrintSync.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/AlternatePrintWaitNotify.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/ObjectWaitNotifyAll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/ObjectWaitReleaseOwnLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/ProducerConsumerModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../learn-DP-tanke/src/main/java/com/cxyxh/c02_frame/ResourceMgr.java" beforeDir="false" afterPath="$PROJECT_DIR$/../learn-DP-tanke/src/main/java/com/cxyxh/c02_frame/ResourceMgr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/ObjectWaitMethodBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cxyxh/imooc/T02_Thread_Object/object/ObjectWaitMethodBasic.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -232,16 +226,6 @@
               <item name="cxyxh" type="462c0819:PsiDirectoryNode" />
               <item name="imooc" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="learn-bingfa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="learn-bingfa" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cxyxh" type="462c0819:PsiDirectoryNode" />
-              <item name="imooc" type="462c0819:PsiDirectoryNode" />
-              <item name="object" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -401,7 +385,7 @@
       <workItem from="1587473822430" duration="521000" />
       <workItem from="1588590443683" duration="1064000" />
       <workItem from="1588766542890" duration="64000" />
-      <workItem from="1589714879668" duration="5973000" />
+      <workItem from="1589714879668" duration="6068000" />
     </task>
     <task id="LOCAL-00001" summary="添加并发和netty项目">
       <created>1584774747946</created>
@@ -459,11 +443,18 @@
       <option name="project" value="LOCAL" />
       <updated>1587195270522</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Object中的wait和notify的方法的使用&#10;生产者消费者模型">
+      <created>1589725360827</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589725360827</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77992000" />
+    <option name="totallyTimeSpent" value="78087000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -476,9 +467,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="462" y="0" width="1256" height="1040" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49888393" visible="true" weight="0.22993311" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49888393" visible="true" weight="0.22993311" />
       <window_info id="Structure" order="1" sideWeight="0.5011161" side_tool="true" weight="0.35287958" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -487,7 +477,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924107" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33295456" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33295456" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.046875" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -605,7 +595,8 @@
     <MESSAGE value="volatile关键字和wait方法基础版" />
     <MESSAGE value="Atomic类和ReentrantLock类" />
     <MESSAGE value="生产者消费者模型" />
-    <option name="LAST_COMMIT_MESSAGE" value="生产者消费者模型" />
+    <MESSAGE value="Object中的wait和notify的方法的使用&#10;生产者消费者模型" />
+    <option name="LAST_COMMIT_MESSAGE" value="Object中的wait和notify的方法的使用&#10;生产者消费者模型" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
