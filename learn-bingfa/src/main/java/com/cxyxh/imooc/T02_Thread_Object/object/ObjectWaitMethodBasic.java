@@ -1,7 +1,11 @@
 package com.cxyxh.imooc.T02_Thread_Object.object;
 
+/**
+ * 展示wait和notify的基本用法
+ * wait会释放掉锁
+ */
 public class ObjectWaitMethodBasic {
-    private static Object lock = new Object();
+    private static final Object lock = new Object();
 
     public static class Thread1 implements Runnable{
         @Override
@@ -24,8 +28,8 @@ public class ObjectWaitMethodBasic {
     public static class Thread2 implements Runnable{
         @Override
         public void run() {
+            System.out.println("线程2启动");
             synchronized (lock){
-                System.out.println("这个sb走了");
                 //把线程1叫醒之后，锁还是有线程2持有，必须等线程2释放了锁之后，线程1才有机会获取到
                 lock.notify();
                 System.out.println("把他叫醒");
