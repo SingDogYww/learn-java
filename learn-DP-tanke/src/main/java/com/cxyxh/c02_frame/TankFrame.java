@@ -6,9 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 创建一个窗口
@@ -177,10 +175,10 @@ public class TankFrame extends Frame {
                     bU = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.fire(new FireStrategy01());
+                    tank.fire();
                     break;
                 case KeyEvent.VK_SPACE:
-                    tank.fire(new FireStrategy02());
+                    tank.fire(new FourDirFireStrategy());
             }
             //重新设置方向
             setTankMainDir();

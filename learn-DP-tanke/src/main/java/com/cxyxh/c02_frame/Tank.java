@@ -1,8 +1,6 @@
 package com.cxyxh.c02_frame;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Tank {
@@ -11,7 +9,7 @@ public class Tank {
     private static final int speed = 5;
     private boolean moving = false;
     private boolean alive = true;
-    private TankFrame tf;
+    public TankFrame tf;
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HIGHT = ResourceMgr.goodTankU.getHeight();
     private Random random = new Random();
@@ -106,7 +104,7 @@ public class Tank {
                 break;
         }
         if (this.group == Group.BAD && random.nextInt() > 5) {
-            this.fire(new FireStrategy01());
+            this.fire(new DefaultFireStrategy());
         }
         if (this.group == Group.BAD && random.nextInt(100) > 95) {
             randomDir();
@@ -131,10 +129,21 @@ public class Tank {
     public void fire(FireStrategy strategy) {
         int bX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bY = this.y + Tank.HIGHT / 2 - Bullet.HIGHT / 2;
-        strategy.fire(tf, bX, bY, dir, group);
+        strategy.fire(this);
     }
 
     public void die() {
         this.alive = false;
+    }
+
+    public void fire() {
+        String defaultFire = PropertyMgr.getString("defaultFire");
+        try {
+            Class<?> aClass = Class.forName(defaultFire);
+            Object o = aClass.newInstance();
+            fire((FireStrategy) o);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

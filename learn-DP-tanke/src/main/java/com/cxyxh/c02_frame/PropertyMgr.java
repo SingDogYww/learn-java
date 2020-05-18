@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyMgr {
-    static Properties properties = new Properties();
+    private static Properties properties = new Properties();
     static {
         try {
             //TODO 使用PropertyMgr.class.getClassLoader().getResourceAsStream("/config/config.properties")会获取为null
@@ -24,6 +24,10 @@ public class PropertyMgr {
     public static Integer getInteger(String key){
         String value = properties.getProperty(key);
         return Integer.valueOf(value);
+    }
+
+    public static String getString(String key){
+        return properties.getProperty(key);
     }
 
     public static void main(String[] args) {
