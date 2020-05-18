@@ -106,7 +106,7 @@ public class Tank {
                 break;
         }
         if (this.group == Group.BAD && random.nextInt() > 5) {
-            this.fire();
+            this.fire(new FireStrategy01());
         }
         if (this.group == Group.BAD && random.nextInt(100) > 95) {
             randomDir();
@@ -128,10 +128,10 @@ public class Tank {
     }
 
 
-    public void fire() {
+    public void fire(FireStrategy strategy) {
         int bX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
         int bY = this.y + Tank.HIGHT / 2 - Bullet.HIGHT / 2;
-        tf.bullet.add(new Bullet(bX, bY, this.dir, this.tf, this.group));
+        strategy.fire(tf, bX, bY, dir, group);
     }
 
     public void die() {

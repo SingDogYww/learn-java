@@ -177,7 +177,10 @@ public class TankFrame extends Frame {
                     bU = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.fire();
+                    tank.fire(new FireStrategy01());
+                    break;
+                case KeyEvent.VK_SPACE:
+                    tank.fire(new FireStrategy02());
             }
             //重新设置方向
             setTankMainDir();
