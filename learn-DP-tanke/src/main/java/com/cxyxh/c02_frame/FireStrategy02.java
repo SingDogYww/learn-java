@@ -1,7 +1,7 @@
 package com.cxyxh.c02_frame;
 
 /**
- * 开火策略1：正常发放
+ * 开火策略2：四个方向都开火
  */
 public class FireStrategy02 implements FireStrategy {
     @Override
