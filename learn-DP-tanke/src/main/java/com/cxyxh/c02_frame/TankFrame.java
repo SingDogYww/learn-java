@@ -12,7 +12,8 @@ import java.util.List;
  * 创建一个窗口
  */
 public class TankFrame extends Frame {
-    private Tank tank = new Tank(400, 600, Dir.UP, this, Group.GOOD);
+    GoodTankFactory factory = new GoodTankFactory();
+    private Tank tank = factory.createTank(400, 600, Dir.UP, this);
     List<Bullet> bullet = new ArrayList<>();
     public static final int GAME_HIGHT = 800, GAME_WIDTH = 1200;
     List<Tank> tanks = new ArrayList<>();

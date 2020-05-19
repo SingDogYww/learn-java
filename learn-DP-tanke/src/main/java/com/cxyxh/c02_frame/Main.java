@@ -6,9 +6,10 @@ public class Main {
 
         //初始化 敌方坦克
         for (int i = 0; i < PropertyMgr.getInteger("initial.enemy.count"); i++) {
-            Tank tank = new Tank(100 + 100 * i,100, Dir.DOWN, frame, Group.BAD);
-            tank.setMoving(true);
-            frame.tanks.add(tank);
+            BadTankFactory factory = new BadTankFactory();
+            Tank tank1 = factory.createTank(100 + 100 * i, 100, Dir.DOWN, frame);
+            tank1.setMoving(true);
+            frame.tanks.add(tank1);
         }
 
         while (true){

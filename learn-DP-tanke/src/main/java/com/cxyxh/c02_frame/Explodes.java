@@ -2,14 +2,12 @@ package com.cxyxh.c02_frame;
 
 import java.awt.*;
 
-public class Explodes {
-    public static int WIDTH = ResourceMgr.bulletL.getWidth();
-    public static int HIGHT = ResourceMgr.bulletL.getHeight();
-    private int x, y;
-    private TankFrame tf;
-    private boolean alive;
-    private int step = 0;
-
+public abstract class Explodes {
+    protected int x, y;
+    protected TankFrame tf;
+    protected boolean alive;
+    protected int step;
+    public int width, height;
 
     public Explodes(int x, int y, TankFrame tf) {
         this.x = x;
@@ -17,11 +15,45 @@ public class Explodes {
         this.tf = tf;
     }
 
-    public void paint(Graphics g) {
-        g.drawImage(ResourceMgr.explodes[step++], this.x, this.y, null);
-        if (step >= ResourceMgr.explodes.length){
-            tf.explodesList.remove(this);
-        }
+    public int getX() {
+        return x;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public TankFrame getTf() {
+        return tf;
+    }
+
+    public void setTf(TankFrame tf) {
+        this.tf = tf;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public abstract void paint(Graphics g);
 }

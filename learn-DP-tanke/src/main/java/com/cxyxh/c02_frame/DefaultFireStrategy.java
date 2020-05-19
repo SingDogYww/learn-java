@@ -5,9 +5,8 @@ package com.cxyxh.c02_frame;
  */
 public class DefaultFireStrategy implements FireStrategy {
     @Override
-    public void fire(Tank tank) {
-        int bX = tank.getX() + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
-        int bY = tank.getY() + Tank.HIGHT / 2 - Bullet.HIGHT / 2;
-        tank.tf.bullet.add(new Bullet(bX, bY, tank.getDir(), tank.tf, tank.getGroup()));
+    public void fire(Tank tank, AbstractFactory factory) {
+        Bullet bullet = factory.createBullet(tank, tank.getDir());
+        tank.tf.bullet.add(bullet);
     }
 }

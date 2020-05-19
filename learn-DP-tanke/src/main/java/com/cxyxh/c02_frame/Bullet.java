@@ -2,70 +2,29 @@ package com.cxyxh.c02_frame;
 
 import java.awt.*;
 
-public class Bullet {
-    private static final int speed = 10;
-    private int x, y;
-    private Dir dir;
-    private static final int width = 50, height = 50;
-    private boolean live = true;
-    private TankFrame tf;
-    public static int WIDTH = ResourceMgr.bulletL.getWidth();
-    public static int HIGHT = ResourceMgr.bulletL.getHeight();
-    private Group group;
-    private Rectangle rectangle = new Rectangle();
+public abstract class Bullet {
+    protected int speed;
+    protected int x, y;
+    protected Dir dir;
+    protected boolean live = true;
+    protected TankFrame tf;
+    protected Group group;
+    protected Rectangle rectangle = new Rectangle();
+    public int width, hight;
+    public AbstractFactory factory;
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
+
+    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group, int speed, AbstractFactory factory) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
         this.group = group;
-        rectangle.x = x;
-        rectangle.y = y;
-        rectangle.width = WIDTH;
-        rectangle.height = HIGHT;
+        this.speed = speed;
+        this.factory = factory;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void paint(Graphics g) {
-        if (!live){
-            tf.bullet.remove(this);
-        }
-        switch (dir) {
-            case LEFT:
-                g.drawImage(ResourceMgr.bulletL, x, y, null);
-                break;
-            case RIGHT:
-                g.drawImage(ResourceMgr.bulletR, x, y, null);
-                break;
-            case DOWN:
-                g.drawImage(ResourceMgr.bulletD, x, y, null);
-                break;
-            case UP:
-                g.drawImage(ResourceMgr.bulletU, x, y, null);
-                break;
-        }
-        rectangle.x = this.x;
-        rectangle.y = this.y;
-        move();
-    }
-
-    private void move() {
+    protected void move() {
         switch (dir) {
             case LEFT:
                 x -= speed;
@@ -83,20 +42,20 @@ public class Bullet {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HIGHT) live = false;
     }
 
+    protected void die() {
+        this.live = false;
+    }
 
     public void collideWith(Tank tank) {
         if (this.group.equals(tank.getGroup())) return;
-        //TODO 每次都会new对象，会让垃圾回收器时不时的回收一下
         if (rectangle.intersects(tank.rectangle)){
             tank.die();
             this.die();
-            int bX = tank.getX() + Tank.WIDTH / 2 - Explodes.WIDTH / 2;
-            int bY = tank.getY() + Tank.HIGHT / 2 - Explodes.HIGHT / 2;
-            this.tf.explodesList.add(new Explodes(bX, bY, this.tf));
+            Explodes explodes = factory.createExplodes(tank);
+            this.tf.explodesList.add(explodes);
         }
     }
 
-    private void die() {
-        this.live = false;
-    }
+
+    public abstract void paint(Graphics g);
 }

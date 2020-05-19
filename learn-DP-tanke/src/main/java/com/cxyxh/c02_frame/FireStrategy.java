@@ -6,5 +6,5 @@ public interface FireStrategy {
      * 就是尽量不去修改现有的代码，而进行扩展
      * @param tank
      */
-    void fire(Tank tank);
+    void fire(Tank tank, AbstractFactory factory);
 }
