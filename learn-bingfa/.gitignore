@@ -4,6 +4,7 @@
 .gradle/
 build/
 out/
+.idea/
 
 # Log file
 *.log

@@ -2,7 +2,7 @@ package com.cxyxh.imooc.T02_Thread_Object.object;
 
 /**
  * 面试题：交替打印奇偶数，范围0-100
- * 解决方案：使用synchronized
+ * 解决方案：使用wait/notify
  */
 public class AlternatePrintWaitNotify {
     private static int count;

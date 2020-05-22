@@ -3,6 +3,9 @@ package com.cxyxh.imooc.T02_Thread_Object.object;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class ProducerConsumerModel {
     public static void main(String[] args) {
         Container container = new Container();
