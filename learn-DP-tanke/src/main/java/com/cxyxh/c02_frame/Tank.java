@@ -9,18 +9,18 @@ public class Tank {
     private static final int speed = 5;
     private boolean moving = false;
     private boolean alive = true;
-    public TankFrame tf;
+    public GameModel gameModel;
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HIGHT = ResourceMgr.goodTankU.getHeight();
     private Random random = new Random();
     private Group group = Group.BAD;
     Rectangle rectangle = new Rectangle();
-    public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public Tank(int x, int y, Dir dir, GameModel gameModel, Group group) {
         this.x = x;
         this.y = y;
         this.group = group;
         this.dir = dir;
-        this.tf = tf;
+        this.gameModel = gameModel;
         rectangle.x = this.x;
         rectangle.y = y;
         rectangle.width = WIDTH;
@@ -69,7 +69,7 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        if (!alive) tf.tanks.remove(this);
+        if (!alive) gameModel.tanks.remove(this);
         switch (dir) {
             case LEFT:
                 g.drawImage(this.group == Group.BAD ? ResourceMgr.badTankL : ResourceMgr.goodTankL, x, y, null);

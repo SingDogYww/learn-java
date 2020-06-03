@@ -6,21 +6,21 @@ public class Explodes {
     public static int WIDTH = ResourceMgr.bulletL.getWidth();
     public static int HIGHT = ResourceMgr.bulletL.getHeight();
     private int x, y;
-    private TankFrame tf;
+    private GameModel gameModel;
     private boolean alive;
     private int step = 0;
 
 
-    public Explodes(int x, int y, TankFrame tf) {
+    public Explodes(int x, int y, GameModel gameModel) {
         this.x = x;
         this.y = y;
-        this.tf = tf;
+        this.gameModel = gameModel;
     }
 
     public void paint(Graphics g) {
         g.drawImage(ResourceMgr.explodes[step++], this.x, this.y, null);
         if (step >= ResourceMgr.explodes.length){
-            tf.explodesList.remove(this);
+            gameModel.explodesList.remove(this);
         }
     }
 

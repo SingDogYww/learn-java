@@ -12,13 +12,8 @@ import java.util.List;
  * 创建一个窗口
  */
 public class TankFrame extends Frame {
-    private Tank tank = new Tank(400, 600, Dir.UP, this, Group.GOOD);
-    List<Bullet> bullet = new ArrayList<>();
+    GameModel gameModel = new GameModel();
     public static final int GAME_HIGHT = 800, GAME_WIDTH = 1200;
-    List<Tank> tanks = new ArrayList<>();
-//    Explodes explodes = new Explodes(200, 200, this);
-    List<Explodes> explodesList = new ArrayList<>();
-
     public TankFrame() {
         //设置宽度
         setSize(GAME_WIDTH, GAME_HIGHT);
@@ -57,6 +52,7 @@ public class TankFrame extends Frame {
      */
     @Override
     public void update(Graphics g) {
+
         if (offScreenImage == null){
             offScreenImage = this.createImage(GAME_WIDTH, GAME_HIGHT);
         }
@@ -77,45 +73,17 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g) {
-        tank.paint(g);
-//        List<Bullet> collect = bullet.stream().filter(o1 -> (o1.getX() < GAME_WIDTH && o1.getX() > 0) && (o1.getY() < GAME_HIGHT && o1.getY() > 0)).collect(Collectors.toList());
-//        bullet = collect;
-//        collect.forEach(o1 -> o1.paint(g));
-        g.setColor(Color.WHITE);
-        g.drawString("子弹数量" + bullet.size(), 10, 60);
-        g.drawString("敌人数量" + tanks.size(), 10, 80);
-        for (int i = 0; i < bullet.size(); i++) {
-            Bullet bullet = this.bullet.get(i);
-            bullet.paint(g);
-        }
-        for (int i = 0; i < explodesList.size(); i++) {
-            Explodes explodes = explodesList.get(i);
-            explodes.paint(g);
-        }
-        for (int i = 0; i < tanks.size(); i++) {
-            tanks.get(i).paint(g);
-        }
-        //碰撞检测
-        for (int i = 0; i < bullet.size(); i++) {
-            for (int j = 0; j < tanks.size(); j++) {
-                bullet.get(i).collideWith(tanks.get(j));
-            }
-            //判断己方坦克碰撞检测
-            bullet.get(i).collideWith(tank);
-        }
-//        explodes.paint(g);
+        gameModel.paint(g);
     }
 
     /**
      * 键盘监听处理类
      */
     class MyKeyListener extends KeyAdapter {
-
         boolean bL = false;
         boolean bR = false;
         boolean bU = false;
         boolean bD = false;
-
         /**
          * 当某个键被按下
          */
@@ -141,15 +109,15 @@ public class TankFrame extends Frame {
         }
 
         private void setTankMainDir() {
-            if (bL) tank.setDir(Dir.LEFT);
-            if (bR) tank.setDir(Dir.RIGHT);
-            if (bD) tank.setDir(Dir.DOWN);
-            if (bU) tank.setDir(Dir.UP);
+            if (bL) gameModel.getMainTank().setDir(Dir.LEFT);
+            if (bR) gameModel.getMainTank().setDir(Dir.RIGHT);
+            if (bD) gameModel.getMainTank().setDir(Dir.DOWN);
+            if (bU) gameModel.getMainTank().setDir(Dir.UP);
 
             if (!bD && !bL && !bR && !bU){
-                tank.setMoving(false);
+                gameModel.getMainTank().setMoving(false);
             }else{
-                tank.setMoving(true);
+                gameModel.getMainTank().setMoving(true);
             }
         }
 
@@ -175,10 +143,10 @@ public class TankFrame extends Frame {
                     bU = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    tank.fire();
+                    gameModel.getMainTank().fire();
                     break;
                 case KeyEvent.VK_SPACE:
-                    tank.fire(new FourDirFireStrategy());
+                    gameModel.getMainTank().fire(new FourDirFireStrategy());
             }
             //重新设置方向
             setTankMainDir();
