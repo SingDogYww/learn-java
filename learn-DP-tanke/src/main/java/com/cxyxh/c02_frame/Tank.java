@@ -1,9 +1,12 @@
 package com.cxyxh.c02_frame;
 
+import com.cxyxh.c02_frame.strategy.DefaultFireStrategy;
+import com.cxyxh.c02_frame.strategy.FireStrategy;
+
 import java.awt.*;
 import java.util.Random;
 
-public class Tank {
+public class Tank extends GameObject{
     private int x, y;
     private Dir dir;
     private static final int speed = 5;
@@ -27,6 +30,10 @@ public class Tank {
         rectangle.height = HIGHT;
     }
 
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
 
     public Group getGroup() {
         return group;
@@ -69,7 +76,7 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        if (!alive) gameModel.tanks.remove(this);
+        if (!alive) gameModel.removeObject(this);
         switch (dir) {
             case LEFT:
                 g.drawImage(this.group == Group.BAD ? ResourceMgr.badTankL : ResourceMgr.goodTankL, x, y, null);
@@ -145,5 +152,9 @@ public class Tank {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public void stop(){
+        moving = false;
     }
 }

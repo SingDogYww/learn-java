@@ -2,7 +2,7 @@ package com.cxyxh.c02_frame;
 
 import java.awt.*;
 
-public class Bullet {
+public class Bullet extends GameObject{
     private static final int speed = 10;
     private int x, y;
     private Dir dir;
@@ -12,6 +12,11 @@ public class Bullet {
     public static int HIGHT = ResourceMgr.bulletL.getHeight();
     private Group group;
     private Rectangle rectangle = new Rectangle();
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
     GameModel gameModel;
 
     public Bullet(int x, int y, Dir dir, GameModel gameModel, Group group) {
@@ -44,7 +49,7 @@ public class Bullet {
 
     public void paint(Graphics g) {
         if (!live){
-            gameModel.bullet.remove(this);
+            gameModel.removeObject(this);
         }
         switch (dir) {
             case LEFT:
@@ -92,7 +97,7 @@ public class Bullet {
             this.die();
             int bX = tank.getX() + Tank.WIDTH / 2 - Explodes.WIDTH / 2;
             int bY = tank.getY() + Tank.HIGHT / 2 - Explodes.HIGHT / 2;
-            this.gameModel.explodesList.add(new Explodes(bX, bY, this.gameModel));
+            this.gameModel.addGameObject(new Explodes(bX, bY, this.gameModel));
         }
     }
 

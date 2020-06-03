@@ -1,12 +1,12 @@
 package com.cxyxh.c02_frame;
 
 
+import com.cxyxh.c02_frame.strategy.FourDirFireStrategy;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 创建一个窗口
