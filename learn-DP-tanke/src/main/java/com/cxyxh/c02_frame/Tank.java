@@ -154,7 +154,30 @@ public class Tank extends GameObject{
         }
     }
 
+    /**
+     * 停止坦克
+     */
     public void stop(){
         moving = false;
+    }
+
+    /**
+     * 反转坦克方向
+     */
+    public void reverseDir(){
+        switch (dir) {
+            case LEFT:
+                dir = Dir.RIGHT;
+                break;
+            case RIGHT:
+                dir = Dir.LEFT;
+                break;
+            case DOWN:
+                dir = Dir.UP;
+                break;
+            case UP:
+                dir = Dir.DOWN;
+                break;
+        }
     }
 }

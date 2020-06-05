@@ -1,20 +1,22 @@
 package com.cxyxh.c02_frame;
 
-import com.cxyxh.c02_frame.cor.BulletTankCollider;
-import com.cxyxh.c02_frame.cor.Collider;
-import com.cxyxh.c02_frame.cor.TankTankCollider;
+import com.cxyxh.c02_frame.cor.ColliderChain;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 对于TanKFrame来说
  * 门面模式
  * Facade 抽象出一个对象，用于管理这些关系比较复杂的对象
+ * 对于游戏物品来说
+ * 调停者
+ * 将所有游戏物品解耦
+ * 相当于居委会大妈
  */
 public class GameModel {
-    Collider collider = new BulletTankCollider();
-    Collider collider2 = new TankTankCollider();
+    ColliderChain colliderChain = new ColliderChain();
     Tank tank = new Tank(400, 600, Dir.UP, this, Group.GOOD);
 //    public List<Bullet> bullet = new ArrayList<>();
 //    public List<Tank> tanks = new ArrayList<>();
@@ -71,8 +73,8 @@ public class GameModel {
             for (int j = i + 1; j < gameObjects.size(); j++) {
                 GameObject o1 = gameObjects.get(i);
                 GameObject o2 = gameObjects.get(j);
-                collider.collide(o1, o2);
-                collider2.collide(o1, o2);
+                //可以使用反射，获取所有的碰撞器来进行碰撞检测
+                colliderChain.collide(o1,o2);
             }
         }
 

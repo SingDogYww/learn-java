@@ -89,8 +89,8 @@ public class Bullet extends GameObject{
     }
 
 
-    public void collideWith(Tank tank) {
-        if (this.group.equals(tank.getGroup())) return;
+    public boolean collideWith(Tank tank) {
+        if (this.group.equals(tank.getGroup())) return false;
         //TODO 每次都会new对象，会让垃圾回收器时不时的回收一下
         if (rectangle.intersects(tank.rectangle)){
             tank.die();
@@ -98,7 +98,9 @@ public class Bullet extends GameObject{
             int bX = tank.getX() + Tank.WIDTH / 2 - Explodes.WIDTH / 2;
             int bY = tank.getY() + Tank.HIGHT / 2 - Explodes.HIGHT / 2;
             this.gameModel.addGameObject(new Explodes(bX, bY, this.gameModel));
+            return true;
         }
+        return false;
     }
 
     private void die() {
